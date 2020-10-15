@@ -20,7 +20,7 @@ steps:
   - ls -al
 
 - name: d
-  image: node
+  image: python
   commands:
   - ls -al
 
@@ -30,12 +30,12 @@ steps:
   - ls -al
 
 - name: f
-  image: node
+  image: node:14.13.1
   commands:
   - ls -al
 
 - name: z
-  image: golang
+  image: node:current-alpine3.10
   commands:
   - ls -al
   depends_on:
