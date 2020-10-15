@@ -60,3 +60,65 @@ steps:
   - d
   - e
   - f
+---
+kind: pipeline
+type: kubernetes
+name: drone2
+
+steps:
+- name: a
+  image: golang
+  commands:
+  - ls -al
+  - df -h
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+
+- name: b
+  image: node
+  commands:
+  - ls -al
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+
+- name: c
+  image: golang
+  commands:
+  - ls -al
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+
+- name: d
+  image: python
+  commands:
+  - ls -al
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+
+- name: e
+  image: golang
+  commands:
+  - ls -al
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+
+- name: f
+  image: node:14.13.1
+  commands:
+  - ls -al
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+
+- name: z
+  image: node:current-alpine3.10
+  resources:
+    requests:
+      cpu: 500
+      memory: 512MiB
+    limits:
+      cpu: 500
+      memory: 512MiB
+  commands:
+  - ls -al
+  - dd if=/dev/urandom bs=1024000 count=1024 | sha256sum
+  depends_on:
+  - a
+  - b
+  - c
+  - d
+  - e
+  - f
