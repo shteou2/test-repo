@@ -4,8 +4,44 @@ type: kubernetes
 name: drone
 
 steps:
-- name: greeting
-  image: golang:1.12
+- name: a
+  image: golang
   commands:
   - ls -al
-  - go version
+
+- name: b
+  image: node
+  commands:
+  - ls -al
+
+- name: c
+  image: golang
+  commands:
+  - ls -al
+
+- name: d
+  image: node
+  commands:
+  - ls -al
+
+- name: e
+  image: golang
+  commands:
+  - ls -al
+
+- name: f
+  image: node
+  commands:
+  - ls -al
+
+- name: z
+  image: golang
+  commands:
+  - ls -al
+  depends_on:
+  - a
+  - b
+  - c
+  - d
+  - e
+  - f
