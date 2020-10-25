@@ -59,6 +59,5 @@ steps:
   - c
   - d
   - e
-  - f
 node:
   env: prod
